@@ -11,12 +11,12 @@ export const ResponseErrorHandler = (error: AxiosError): Promise<AxiosError> => 
   let message: string = '';
 
   if (status === 422) message = values(response?.errors).join('\n');
-  else if (status === 401) message = "not Found";
+  else if (status === 401) message = 'not Found';
   else if (status === 404 || status === 419 || status === 429 || status === 403) message = response?.message;
-  else if (error.code === 'ECONNABORTED') message = "serverBusy";
-  else if (!onlineManager.isOnline()) message = "connection error";
+  else if (error.code === 'ECONNABORTED') message = 'serverBusy';
+  else if (!onlineManager.isOnline()) message = 'connection error';
   else if (status === 500 || (error.isAxiosError && isNil(error?.response)))
-    message = response?.message || "server error";
+    message = response?.message || 'server error';
   if (!isEmpty(message) && !error?.config?.headers?.silentError) {
     toast.error(message);
   }

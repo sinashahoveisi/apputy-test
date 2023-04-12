@@ -1,4 +1,4 @@
-import {FC, ReactNode, useEffect} from 'react';
+import {FC, ReactNode} from 'react';
 import ReactQuery from './ReactQuery';
 import ToastConfig from './Toast';
 
@@ -7,7 +7,6 @@ interface Props {
 }
 
 const MainConfig: FC<Props> = ({children}) => {
-
   return (
     <div>
       <ReactQuery>{children}</ReactQuery>
