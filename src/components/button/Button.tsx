@@ -10,6 +10,7 @@ interface Props {
   variant?: ButtonVariant;
   onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
   className?: string;
+  children?: ReactNode;
   titleClassName?: string;
   isLoading?: boolean;
   disabled?: boolean;
@@ -26,6 +27,7 @@ const Button: FC<Props> = ({
   titleClassName,
   isLoading,
   leftIcon,
+  children,
   disabled,
   onClick,
   backgroundColor,
@@ -71,7 +73,7 @@ const Button: FC<Props> = ({
   return (
     <button type={type} onClick={onClick} className={clx} disabled={isLoading || disabled}>
       {isLoading && <Spinner size="!w-5 !h-5" className="mr-2 !p-0" fill={spinnerColor} />}
-      <span className={clsx('whitespace-nowrap font-normal', titleClassName)}>{title}</span>
+      <span className={clsx('whitespace-nowrap font-normal', titleClassName)}>{children || title}</span>
       {leftIcon && !isLoading && <span className="pr-1">{leftIcon}</span>}
     </button>
   );

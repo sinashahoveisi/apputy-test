@@ -1,13 +1,14 @@
-import {FC, memo, useMemo} from 'react';
+import {type FC, memo, type ReactNode, useMemo} from 'react';
 import clsx from 'clsx';
 import {Link} from 'react-router-dom';
-import {ButtonVariant} from '@/types/general';
+import type {ButtonVariant} from '@/types/general';
 
 interface Props {
   title?: string;
   type?: 'button' | 'submit' | 'reset';
   variant?: ButtonVariant;
   className?: string;
+  children?: ReactNode;
   titleClassName?: string;
   href: string;
   disabled?: boolean;
@@ -21,6 +22,7 @@ const LinkButton: FC<Props> = ({
   className,
   titleClassName,
   href,
+  children,
   backgroundColor,
   variant = 'primary',
   width = 'w-fit'
@@ -47,7 +49,7 @@ const LinkButton: FC<Props> = ({
 
   return (
     <Link type={type} to={href} className={clx}>
-      <span className={clsx('whitespace-nowrap font-normal', titleClassName)}>{title}</span>
+      <span className={clsx('whitespace-nowrap font-normal', titleClassName)}>{children || title}</span>
     </Link>
   );
 };

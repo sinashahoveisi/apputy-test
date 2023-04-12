@@ -1,4 +1,4 @@
-import React, {FC, ReactNode, useEffect, useState} from 'react';
+import {type FC, useState} from 'react';
 import {Control, useController} from 'react-hook-form';
 import clsx from 'clsx';
 import EyeSVG from '@/assets/svg/Eye';
@@ -40,11 +40,7 @@ const TextInput: FC<Props> = ({
   const togglePassword = () => setShowValue((prevState: boolean) => !prevState);
 
   return (
-    <div
-      className={clsx(
-        'mb-2 flex w-full w-fit flex-col items-start justify-center gap-2 outline-none',
-        containerClassName
-      )}>
+    <div className={clsx('mb-2 flex w-fit flex-col items-start justify-center gap-2 outline-none', containerClassName)}>
       {label && (
         <label htmlFor={name} className="text-sm font-thin">
           {label}
@@ -56,7 +52,7 @@ const TextInput: FC<Props> = ({
           type={showValue ? 'text' : type}
           id={name}
           className={clsx(
-            'text-md ltr box-border w-full w-[50vw] min-w-[15rem] max-w-[20rem] rounded border border-pen-light bg-[#161a1e] p-4 text-left text-xs text-body outline-pen-light focus:outline focus:outline-1',
+            'text-md ltr box-border w-[50vw] w-full min-w-[20rem] max-w-[30rem] rounded border border-pen-light bg-[#161a1e] p-4 text-left text-xs text-body outline-pen-light focus:outline focus:outline-1',
             {'pr-12': type === 'password'},
             {'cursor-not-allowed bg-gray-200': disabled},
             {'border border-red-400': error?.message},
@@ -70,14 +66,14 @@ const TextInput: FC<Props> = ({
         {type === 'password' && (
           <button
             type="button"
-            className="absolute top-[1px] right-1 m-1 flex inline-flex h-10 w-10 items-center items-center justify-center rounded-full bg-primary"
+            className="absolute right-1 top-[1px] m-1 flex inline-flex h-10 w-10 items-center items-center justify-center rounded-full bg-primary"
             onClick={togglePassword}>
             {showValue ? <EyeSVG /> : <EyeLineSVG />}
           </button>
         )}
       </div>
       {error?.message && (
-        <span className="mt-1 ml-1 flex items-center text-tiny font-thin tracking-wide text-red-500">
+        <span className="ml-1 mt-1 flex items-center text-tiny font-thin tracking-wide text-red-500">
           {error?.message}
         </span>
       )}

@@ -14,14 +14,14 @@ instance.interceptors.response.use(
     }
     return {
       ...response,
-      data: response?.data?.last_page
+      data: response?.data?.total_pages
         ? {
             data: response?.data?.data,
             meta: {
-              current_page: response?.data?.current_page,
-              last_page: response?.data?.last_page,
+              page: response?.data?.page,
+              last_page: response?.data?.total_pages,
               per_page: response?.data?.per_page,
-              total: response?.data?.total
+              total: response?.data?.total_pages
             }
           }
         : response?.data

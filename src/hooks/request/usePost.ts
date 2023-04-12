@@ -51,7 +51,12 @@ const usePost = ({url, method = 'POST', query, isMultipart, onSuccess, onError, 
 
   const mutationData: any = useMutation(createRequest, {
     retry: (failureCount: number, error: AxiosError): boolean => {
-      if (error?.response?.status === 404 || error?.response?.status === 500 || error?.response?.status === 422)
+      if (
+        error.isAxiosError ||
+        error?.response?.status === 404 ||
+        error?.response?.status === 500 ||
+        error?.response?.status === 422
+      )
         return false;
       return failureCount <= 1;
     },
