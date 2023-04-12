@@ -43,7 +43,7 @@ const usePagination = ({
   const requestConfig: AxiosRequestConfig = {
     url,
     method: 'GET',
-    params: {page, query, search}
+    params: {page, ...query, ...search}
   };
 
   const paginateQuery = useQuery(without(concat(prettyName, page), undefined, null), () => axios(requestConfig), {

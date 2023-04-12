@@ -11,6 +11,7 @@ const UsersPage: FC = () => {
   const fetchUsers = usePaginate({
     name: ['users', 'all'],
     url: 'users',
+    query: {delay: 3},
     page,
     enabled: true
   });
